@@ -7,7 +7,6 @@ namespace MilesChou\Psr\Http\Message\Traits;
 use DomainException;
 use GuzzleHttp\Psr7\HttpFactory as GuzzleFactory;
 use Http\Factory\Guzzle\ServerRequestFactory as LegacyGuzzleFactory;
-use Http\Factory\Slim\ServerRequestFactory as SlimFactory;
 use Laminas\Diactoros\ServerRequestFactory as LaminasFactory;
 use Nyholm\Psr7\Factory\Psr17Factory as NyholmFactory;
 use Psr\Http\Message\ServerRequestFactoryInterface;
@@ -36,10 +35,6 @@ trait ServerRequestFactoryDetector
 
         if (class_exists(GuzzleFactory::class)) {
             return new GuzzleFactory();
-        }
-
-        if (class_exists(SlimFactory::class)) {
-            return new SlimFactory();
         }
 
         if (class_exists(LegacyGuzzleFactory::class)) {

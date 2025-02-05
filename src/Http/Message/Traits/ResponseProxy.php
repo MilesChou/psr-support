@@ -2,6 +2,7 @@
 
 namespace MilesChou\Psr\Http\Message\Traits;
 
+use Psr\Http\Message\MessageInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 
@@ -12,12 +13,12 @@ trait ResponseProxy
      */
     protected $response;
 
-    public function getProtocolVersion()
+    public function getProtocolVersion(): string
     {
         return $this->response->getProtocolVersion();
     }
 
-    public function withProtocolVersion($version)
+    public function withProtocolVersion($version): MessageInterface
     {
         $clone = clone $this;
         $clone->response = $this->response->withProtocolVersion($version);
@@ -25,27 +26,27 @@ trait ResponseProxy
         return $clone;
     }
 
-    public function getHeaders()
+    public function getHeaders(): array
     {
         return $this->response->getHeaders();
     }
 
-    public function hasHeader($name)
+    public function hasHeader(string $name): bool
     {
         return $this->response->hasHeader($name);
     }
 
-    public function getHeader($name)
+    public function getHeader(string $name): array
     {
         return $this->response->getHeader($name);
     }
 
-    public function getHeaderLine($name)
+    public function getHeaderLine(string $name): string
     {
         return $this->response->getHeaderLine($name);
     }
 
-    public function withHeader($name, $value)
+    public function withHeader(string $name, $value): MessageInterface
     {
         $clone = clone $this;
         $clone->response = $this->response->withHeader($name, $value);
@@ -53,7 +54,7 @@ trait ResponseProxy
         return $clone;
     }
 
-    public function withAddedHeader($name, $value)
+    public function withAddedHeader(string $name, $value): MessageInterface
     {
         $clone = clone $this;
         $clone->response = $this->response->withAddedHeader($name, $value);
@@ -61,7 +62,7 @@ trait ResponseProxy
         return $clone;
     }
 
-    public function withoutHeader($name)
+    public function withoutHeader(string $name): MessageInterface
     {
         $clone = clone $this;
         $clone->response = $this->response->withoutHeader($name);
@@ -69,12 +70,12 @@ trait ResponseProxy
         return $clone;
     }
 
-    public function getBody()
+    public function getBody(): StreamInterface
     {
         return $this->response->getBody();
     }
 
-    public function withBody(StreamInterface $body)
+    public function withBody(StreamInterface $body): MessageInterface
     {
         $clone = clone $this;
         $clone->response = $this->response->withBody($body);
@@ -82,12 +83,12 @@ trait ResponseProxy
         return $clone;
     }
 
-    public function getStatusCode()
+    public function getStatusCode(): int
     {
         return $this->response->getStatusCode();
     }
 
-    public function withStatus($code, $reasonPhrase = '')
+    public function withStatus(int $code, string $reasonPhrase = ''): ResponseInterface
     {
         $clone = clone $this;
         $clone->response = $this->response->withStatus($code, $reasonPhrase);
@@ -95,7 +96,7 @@ trait ResponseProxy
         return $clone;
     }
 
-    public function getReasonPhrase()
+    public function getReasonPhrase(): string
     {
         return $this->response->getReasonPhrase();
     }
