@@ -7,7 +7,6 @@ namespace MilesChou\Psr\Http\Message\Traits;
 use DomainException;
 use GuzzleHttp\Psr7\HttpFactory as GuzzleFactory;
 use Http\Factory\Guzzle\UriFactory as LegacyGuzzleFactory;
-use Http\Factory\Slim\UriFactory as SlimFactory;
 use Laminas\Diactoros\UriFactory as LaminasFactory;
 use Nyholm\Psr7\Factory\Psr17Factory as NyholmFactory;
 use Psr\Http\Message\UriFactoryInterface;
@@ -35,10 +34,6 @@ trait UriFactoryDetector
 
         if (class_exists(GuzzleFactory::class)) {
             return new GuzzleFactory();
-        }
-
-        if (class_exists(SlimFactory::class)) {
-            return new SlimFactory();
         }
 
         if (class_exists(LegacyGuzzleFactory::class)) {

@@ -2,23 +2,21 @@
 
 namespace MilesChou\Psr\Http\Message\Traits;
 
+use Psr\Http\Message\MessageInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UriInterface;
 
 trait RequestProxy
 {
-    /**
-     * @var RequestInterface
-     */
-    protected $request;
+    protected RequestInterface $request;
 
     /**
      * @inheritDoc
      *
      * @return string
      */
-    public function getProtocolVersion()
+    public function getProtocolVersion(): string
     {
         return $this->request->getProtocolVersion();
     }
@@ -29,7 +27,7 @@ trait RequestProxy
      * @param string $version
      * @return static
      */
-    public function withProtocolVersion($version)
+    public function withProtocolVersion(string $version): MessageInterface
     {
         $clone = clone $this;
         $clone->request = $this->request->withProtocolVersion($version);
@@ -42,7 +40,7 @@ trait RequestProxy
      *
      * @return array
      */
-    public function getHeaders()
+    public function getHeaders(): array
     {
         return $this->request->getHeaders();
     }
@@ -53,7 +51,7 @@ trait RequestProxy
      * @param string $name
      * @return bool
      */
-    public function hasHeader($name)
+    public function hasHeader(string $name): bool
     {
         return $this->request->hasHeader($name);
     }
@@ -64,7 +62,7 @@ trait RequestProxy
      * @param string $name
      * @return array
      */
-    public function getHeader($name)
+    public function getHeader(string $name): array
     {
         return $this->request->getHeader($name);
     }
@@ -75,7 +73,7 @@ trait RequestProxy
      * @param string $name
      * @return string
      */
-    public function getHeaderLine($name)
+    public function getHeaderLine(string $name): string
     {
         return $this->request->getHeaderLine($name);
     }
@@ -87,7 +85,7 @@ trait RequestProxy
      * @param string|string[] $value
      * @return static
      */
-    public function withHeader($name, $value)
+    public function withHeader(string $name, $value): MessageInterface
     {
         $clone = clone $this;
         $clone->request = $this->request->withHeader($name, $value);
@@ -102,7 +100,7 @@ trait RequestProxy
      * @param string|string[] $value
      * @return static
      */
-    public function withAddedHeader($name, $value)
+    public function withAddedHeader(string $name, $value): MessageInterface
     {
         $clone = clone $this;
         $clone->request = $this->request->withAddedHeader($name, $value);
@@ -116,7 +114,7 @@ trait RequestProxy
      * @param string $name
      * @return static
      */
-    public function withoutHeader($name)
+    public function withoutHeader(string $name): MessageInterface
     {
         $clone = clone $this;
         $clone->request = $this->request->withoutHeader($name);
@@ -129,7 +127,7 @@ trait RequestProxy
      *
      * @return StreamInterface
      */
-    public function getBody()
+    public function getBody(): StreamInterface
     {
         return $this->request->getBody();
     }
@@ -140,7 +138,7 @@ trait RequestProxy
      * @param StreamInterface $body
      * @return static
      */
-    public function withBody(StreamInterface $body)
+    public function withBody(StreamInterface $body): MessageInterface
     {
         $clone = clone $this;
         $clone->request = $this->request->withBody($body);
@@ -153,7 +151,7 @@ trait RequestProxy
      *
      * @return string
      */
-    public function getRequestTarget()
+    public function getRequestTarget(): string
     {
         return $this->request->getRequestTarget();
     }
@@ -164,7 +162,7 @@ trait RequestProxy
      * @param mixed $requestTarget
      * @return static
      */
-    public function withRequestTarget($requestTarget)
+    public function withRequestTarget(string $requestTarget): RequestInterface
     {
         $clone = clone $this;
         $clone->request = $this->request->withRequestTarget($requestTarget);
@@ -177,7 +175,7 @@ trait RequestProxy
      *
      * @return string
      */
-    public function getMethod()
+    public function getMethod(): string
     {
         return $this->request->getMethod();
     }
@@ -188,7 +186,7 @@ trait RequestProxy
      * @param string $method
      * @return static
      */
-    public function withMethod($method)
+    public function withMethod(string $method): RequestInterface
     {
         $clone = clone $this;
         $clone->request = $this->request->withMethod($method);
@@ -201,7 +199,7 @@ trait RequestProxy
      *
      * @return UriInterface
      */
-    public function getUri()
+    public function getUri(): UriInterface
     {
         return $this->request->getUri();
     }
@@ -213,7 +211,7 @@ trait RequestProxy
      * @param bool $preserveHost
      * @return static
      */
-    public function withUri(UriInterface $uri, $preserveHost = false)
+    public function withUri(UriInterface $uri, bool $preserveHost = false): RequestInterface
     {
         $clone = clone $this;
         $clone->request = $this->request->withUri($uri, $preserveHost);
