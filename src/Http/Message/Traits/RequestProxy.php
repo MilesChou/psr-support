@@ -9,9 +9,6 @@ use Psr\Http\Message\UriInterface;
 
 trait RequestProxy
 {
-    /**
-     * @var RequestInterface
-     */
     protected RequestInterface $request;
 
     /**

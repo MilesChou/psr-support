@@ -8,10 +8,7 @@ use Psr\Http\Message\StreamInterface;
 
 trait ResponseProxy
 {
-    /**
-     * @var ResponseInterface
-     */
-    protected $response;
+    protected ResponseInterface $response;
 
     public function getProtocolVersion(): string
     {
